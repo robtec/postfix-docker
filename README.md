@@ -9,3 +9,6 @@ docker build -t postfix-image .
 ```
 
 ## Running
+```
+docker run -it -p 25:25 postfix-image
+```
