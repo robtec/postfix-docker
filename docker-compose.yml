@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mail:
+    image: postfix-image
+    container_name: postfix-mail
+    ports:
+      - 25:25
+    environment:
+      TZ: Europe/Berlin
+    volumes:
+      - ./spool-mail:/var/spool/mail
+      - ./mail:/var/mail
