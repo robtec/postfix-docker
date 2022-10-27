@@ -20,6 +20,7 @@ docker run -d --name postfix-mail -it -p 25:25 postfix-image
 echo "hello my dear localhost" | docker exec --interactive postfix-mail mail -s "Sad subject" root -
 
 # read root user mailbox
+
 docker exec -it postfix-mail cat /var/spool/mail/root
 ```
 
