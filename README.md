@@ -10,7 +10,13 @@ docker build -t postfix-image .
 
 ## Running
 ```
+# docker
+
 docker run -d --name postfix-mail -it -p 25:25 postfix-image
+
+# or, docker compose
+
+docker compose up -d
 ```
 
 ## Testing
