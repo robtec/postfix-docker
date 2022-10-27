@@ -21,5 +21,8 @@ if [ -f "$USERS_FILE" ]; then
     load_users
 fi
 
+# update default postfix config
+postconf -e 'maillog_file = /dev/stdout'
+
 
 exec "$@"

@@ -1,5 +1,4 @@
 always_bcc = root@localhost
-maillog_file = /dev/stdout
 
 smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
 biff = no
