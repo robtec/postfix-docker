@@ -15,14 +15,19 @@ function load_users() {
     
 }
 
+function update_configs() {
+    envsubst '\$MY_DOMAIN' < /tmp/main.cf > /etc/postfix/main.cf
+}
+
 # check if users file exists
 if [ -f "$USERS_FILE" ]; then
     echo -e "Found users file to process"
     load_users
 fi
 
-# update default postfix config
-postconf -e 'maillog_file = /dev/stdout'
+update_configs
 
+# update default postfix config
+# postconf -e "maillog_file=/dev/stdout"
 
 exec "$@"

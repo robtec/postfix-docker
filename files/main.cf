@@ -1,4 +1,6 @@
-always_bcc = root@localhost
+# custom settings
+always_bcc = mailbucket@${MY_DOMAIN}
+maillog_file = /dev/stdout
 
 smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
 biff = no
@@ -26,7 +28,7 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = localhost
+myhostname = ${MY_DOMAIN}
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 mydestination = $myhostname, localhost, localhost.localdomain, , localhost

@@ -9,6 +9,6 @@ services:
     ports:
       - 25:25
     environment:
-      KEY: Value
+      MY_DOMAIN: localhost
     volumes:
       - ./mail:/var/spool/mail
