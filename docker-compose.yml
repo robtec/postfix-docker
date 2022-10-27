@@ -9,5 +9,4 @@ services:
     environment:
       KEY: Value
     volumes:
-      - ./spool-mail:/var/spool/mail
-      - ./mail:/var/mail
+      - ./mail:/var/spool/mail
