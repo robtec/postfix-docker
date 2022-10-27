@@ -2,7 +2,9 @@ version: '3'
 
 services:
   mail:
-    image: postfix-image
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: postfix-mail
     ports:
       - 25:25
