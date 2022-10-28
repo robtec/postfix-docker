@@ -3,6 +3,8 @@ Postfix inside a Docker Container
 
 ## Setup
 
+Add add/update `files/users.txt` to control the system users created in the container
+
 Build the image
 ```
 docker build -t postfix-image .
