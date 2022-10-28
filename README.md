@@ -12,11 +12,11 @@ docker build -t postfix-image .
 ```
 # docker
 
-docker run -d --name postfix-mail -it -p 25:25 postfix-image
+docker run -d -e "MY_DOMAIN=localhost" --name postfix-mail -it -p 25:25 postfix-image
 
 # or, docker compose
 
-docker compose up -d
+docker compose up -d --build
 ```
 
 ## Testing
@@ -28,6 +28,30 @@ echo "hello my dear localhost" | docker exec --interactive postfix-mail mail -s 
 # read root user mailbox
 
 docker exec -it postfix-mail cat /var/spool/mail/root
+```
+
+### Telnet
+```
+telnet <HOST> 25
+
+# copy/edit/paste below into terminal
+
+MAIL FROM: <john@coolemails.com>
+
+RCPT TO: <mary@localhost>
+
+data
+Subject: My Telnet Test Email
+
+Hello,
+
+This is an email sent by using the telnet command.
+
+Your friend,
+Me
+
+.
+
 ```
 
 ## Docs

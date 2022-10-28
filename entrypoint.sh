@@ -27,7 +27,4 @@ fi
 
 update_configs
 
-# update default postfix config
-# postconf -e "maillog_file=/dev/stdout"
-
 exec "$@"
