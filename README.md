@@ -21,13 +21,13 @@ docker compose up -d --build
 
 ## Testing
 ```
-# send a mail to root user, natively on the container
+# send a mail to a user, natively on the container
 
-echo "hello my dear localhost" | docker exec --interactive postfix-mail mail -s "Sad subject" root -
+echo "hello my dear localhost" | docker exec --interactive postfix-mail mail -s "Sad subject" mary -
 
-# read root user mailbox
+# read marys mail
 
-docker exec -it postfix-mail cat /var/spool/mail/root
+docker exec -it postfix-mail cat /var/spool/mail/mary
 ```
 
 ### Telnet
