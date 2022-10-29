@@ -3,19 +3,20 @@ Postfix inside a Docker Container
 
 ## Setup
 
-Add add/update `files/users.txt` to control the system users created in the container
+Add/update `files/users.txt` to control the system users created in the container
 
 Build the image
 ```
 docker build -t postfix-image .
 ```
 
-## Generate TLS Certificates using certbot
+## Generate TLS Certificate using certbot
 ```
 # install certbot on your host machine, ubuntu for example
+
 https://certbot.eff.org/instructions?ws=other&os=ubuntufocal
 
-# update command with your domain and run
+# update the following command with your domain then run
 
 certbot certonly --standalone --preferred-challenges http -d ${MY_DOMAIN}
 
@@ -31,46 +32,17 @@ certbot certonly --standalone --preferred-challenges http -d ${MY_DOMAIN}
 
 docker compose up -d --build
 
-# or, docker
+# docker
 
 docker run -d -e "MY_DOMAIN=localhost" -v /etc/letsencrypt/:/etc/letsencrypt --name postfix-mail -it -p 25:25 postfix-image
 ```
 
-## Testing
-```
-# send a mail to a user, natively on the container
+## Test
 
-echo "hello my dear localhost" | docker exec --interactive postfix-mail mail -s "Sad subject" mary -
-
-# read marys mail
-
-docker exec -it postfix-mail cat /var/spool/mail/mary
-```
-
-### Telnet
-```
-telnet <HOST> 25
-
-# copy/edit/paste below into terminal
-
-MAIL FROM: <john@coolemails.com>
-
-RCPT TO: <mary@localhost>
-
-data
-Subject: My Telnet Test Email
-
-Hello,
-
-This is an email sent by using the telnet command.
-
-Your friend,
-Me
-
-.
-
-```
+Using your own email client, send an email to `$USER@{$MY_DOMAIN}`
 
 ## Docs
+
+Postfixs `main.cf` can be found under `files/main.cf`
 
 - Postfix Configs - http://www.postfix.org/BASIC_CONFIGURATION_README.html
