@@ -10,6 +10,16 @@ Build the image
 docker build -t postfix-image .
 ```
 
+## Generate TLS Certificates using certbot
+```
+# update command with your domain
+
+certbot certonly --standalone --preferred-challenges http -d ${MY_DOMAIN}
+
+# follow prompts and note where the Certificate and Key is saved
+# usually found in /etc/letsencrypt/live/${MY_DOMAIN}/
+```
+
 ## Running
 ```
 # docker
