@@ -11,11 +11,12 @@ docker build -t postfix-image .
 ```
 
 ## Generate TLS Certificate using certbot
+
+Install certbot on your host machine, ubuntu for example
+
+[Install Certbot](https://certbot.eff.org/instructions?ws=other&os=ubuntufocal)
+
 ```
-# install certbot on your host machine, ubuntu for example
-
-https://certbot.eff.org/instructions?ws=other&os=ubuntufocal
-
 # update the following command with your domain then run
 
 certbot certonly --standalone --preferred-challenges http -d ${MY_DOMAIN}
