@@ -12,4 +12,4 @@ services:
       MY_DOMAIN: localhost # mydomain.com
     volumes:
       - ./mail:/var/spool/mail
-      - /etc/letsencrypt/live/:/run/ssl/
+      - /etc/letsencrypt/:/etc/letsencrypt

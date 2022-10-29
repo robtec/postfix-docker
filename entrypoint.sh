@@ -23,8 +23,8 @@ function update_configs() {
         envsubst '\$MY_DOMAIN \$CERT_FILE \$KEY_FILE' < /tmp/main.cf > /etc/postfix/main.cf
     else
         echo -e "setting cert/key to certbot for ${MY_DOMAIN}"
-        export CERT_FILE="/run/ssl/${MY_DOMAIN}/fullchain.pem"
-        export KEY_FILE="/run/ssl/${MY_DOMAIN}/privkey.pem"
+        export CERT_FILE="/etc/letsencrypt/live/${MY_DOMAIN}/fullchain.pem"
+        export KEY_FILE="/etc/letsencrypt/live/${MY_DOMAIN}/privkey.pem"
         envsubst '\$MY_DOMAIN \$CERT_FILE \$KEY_FILE' < /tmp/main.cf > /etc/postfix/main.cf
     fi
 }
