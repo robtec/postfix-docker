@@ -12,23 +12,28 @@ docker build -t postfix-image .
 
 ## Generate TLS Certificates using certbot
 ```
-# update command with your domain
+# install certbot on your host machine, ubuntu for example
+https://certbot.eff.org/instructions?ws=other&os=ubuntufocal
+
+# update command with your domain and run
 
 certbot certonly --standalone --preferred-challenges http -d ${MY_DOMAIN}
 
 # follow prompts and note where the Certificate and Key is saved
 # usually found in /etc/letsencrypt/live/${MY_DOMAIN}/
+
+# docker will mount /etc/letsencrypt/ and use the cert/key
 ```
 
 ## Running
 ```
-# docker
-
-docker run -d -e "MY_DOMAIN=localhost" --name postfix-mail -it -p 25:25 postfix-image
-
-# or, docker compose
+# docker compose (preferred)
 
 docker compose up -d --build
+
+# or, docker
+
+docker run -d -e "MY_DOMAIN=localhost" -v /etc/letsencrypt/:/etc/letsencrypt --name postfix-mail -it -p 25:25 postfix-image
 ```
 
 ## Testing
