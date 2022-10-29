@@ -18,13 +18,13 @@ function load_users() {
 function update_configs() {
     if [ "$MY_DOMAIN" == "localhost" ]; then
         echo -e "setting cert/key to default for localhost"
-        CERT_FILE="/etc/ssl/certs/ssl-cert-snakeoil.pem"
-        KEY_FILE="/etc/ssl/private/ssl-cert-snakeoil.key"
+        export CERT_FILE="/etc/ssl/certs/ssl-cert-snakeoil.pem"
+        export KEY_FILE="/etc/ssl/private/ssl-cert-snakeoil.key"
         envsubst '\$MY_DOMAIN \$CERT_FILE \$KEY_FILE' < /tmp/main.cf > /etc/postfix/main.cf
     else
         echo -e "setting cert/key to certbot for ${MY_DOMAIN}"
-        CERT_FILE="/run/ssl/${MY_DOMAIN}/fullchain.pem"
-        KEY_FILE="/run/ssl/${MY_DOMAIN}/privkey.pem"
+        export CERT_FILE="/run/ssl/${MY_DOMAIN}/fullchain.pem"
+        export KEY_FILE="/run/ssl/${MY_DOMAIN}/privkey.pem"
         envsubst '\$MY_DOMAIN \$CERT_FILE \$KEY_FILE' < /tmp/main.cf > /etc/postfix/main.cf
     fi
 }
